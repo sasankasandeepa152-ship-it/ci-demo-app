@@ -57,7 +57,8 @@ pipeline {
                             body: "Build result: ${currentBuild.currentResult}\nJob: ${env.JOB_NAME}\nBuild number: ${env.BUILD_NUMBER}\nBuild URL: ${env.BUILD_URL}"
                         )
                     } catch (err) {
-                        echo 'Email failed. Check the Jenkins Mailer and SMTP settings.'
+                        echo "Email error type: ${err.getClass().getName()}"
+                        echo "Email error details: ${err.getMessage()}"
                     }
                 } else {
                     echo 'Email notification skipped: NOTIFY_EMAIL is empty.'
